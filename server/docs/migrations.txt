@@ -1,0 +1,14 @@
+//Creating new Model and migration. --name for name of model and table in migration. 
+npx sequelize-cli model:generate --name customers --attributes first_name:string,last_name:string,email:string,date_of_birth:string,mobile:string,gender:string,address:text,pincode:integer --underscored
+
+
+
+//Run Migrations
+npx sequelize-cli db:migrate
+
+//Undo migrations 
+npx sequelize-cli db:migrate:undo
+
+
+
+
