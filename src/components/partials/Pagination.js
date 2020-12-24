@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 const Pagination = (props) => {
 
+
     const location = useLocation();
     // let activeClass = location.pathname === props.to ? 'nav-item active' : 'nav-item';
 
@@ -11,9 +12,9 @@ const Pagination = (props) => {
 
 
     // let paginationItems = [<li className="page-item"><a className="page-link" href="#">1</a></li>, <li className="page-item"><a className="page-link" href="#">2</a></li> ];
-
-    for (let i = 1; i <= 1; i++) {
-        paginationItems.push(<li className="page-item" key={i}><a className="page-link" href="#">{i}</a></li>);
+    //onClick={props.handlePageChange(i)
+    for (let i = 1; i <= props.totalPages; i++) {
+        paginationItems.push(<li className="page-item" key={i}><a className="page-link" href="#" onClick={() => props.handlePageChange(i)}>{i}</a></li>);
     }
 
     return (

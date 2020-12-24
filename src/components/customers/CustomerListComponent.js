@@ -12,63 +12,85 @@ class CustomerListComponent extends React.Component {
       loading: true,
       example: "stateVlaue",
       searchFirstName: '',
+      currentPage : 1,
+
       customers: []
 
     };
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.search = this.search.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    
   }
-
+  
   componentDidMount() {
 
-    this.loadListData(this.props.location.search);
+    this.index();
 
   }
 
   componentDidUpdate() {
 
-    //this.loadListData(this.props.location.search);
+    //this.index(this.props.location.search);
     // alert();
 
 
-    // this.loadListData(this.props.location.search);
+    // this.index(this.props.location.search);
+
+  }
+  /**
+   * 
+   * @param {*} page 
+   */
+  handlePageChange(page){
+
+   this.setState({
+    currentPage : page
+   },function(){
+    this.index();
+   });
+
+
 
   }
 
+  /**
+   * 
+   */
+  index() {
 
-  loadListData(queryStr = null) {
-
-    fetch(`${process.env.REACT_APP_BASE_URL}/customers` + queryStr)
-
+    fetch(`${process.env.REACT_APP_BASE_URL}` + `/customers?page=` + this.state.currentPage)
       .then(res => res.json())
       .then(json => this.setState({
         loading: false,
         customers: json.data,
         totalItems : json.totalItems,
         totalPages : json.totalPages,
-        currentPage : json.json
       }));
 
 
   }
-
+  /**
+   * 
+   * @param {*} id 
+   */
   delete(id) {
 
     if (window.confirm("Are you sure?")) {
       axios.delete(`${process.env.REACT_APP_BASE_URL}/customers/${id}`)
         .then((result) => {
-          this.loadListData();
+          this.index();
 
           //this.props.history.push('/customers');
         });
     }
-
-
-
-
   }
 
+  /**
+   * 
+   * @param {*} e 
+   */
   search(e) {
 
     e.preventDefault();
@@ -83,10 +105,13 @@ class CustomerListComponent extends React.Component {
       pathname: '/customers',
       search: searchStr
     })
-    this.loadListData(searchStr);
+    this.index(searchStr);
 
   }
-
+  /**
+   * 
+   * @param {*} event 
+   */
   handleSearchChange(event) {
 
     const target = event.target;
@@ -195,7 +220,7 @@ class CustomerListComponent extends React.Component {
                   <Pagination currentPage={this.state.currentPage}
                   totalItems = {this.state.totalItems}
                   totalPages = {this.state.totalPages}
-                  loadListData = {this.loadListData}
+                  handlePageChange = {this.handlePageChange}
                   ></Pagination>
 
                   {/* <ReactPaginate
