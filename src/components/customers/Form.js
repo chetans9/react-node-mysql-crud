@@ -112,7 +112,7 @@ const Form = (props) => {
                                 <input type="radio" className="form-check-input" name="gender"
                                  onChange={formik.handleChange}
                                  value = 'Male'
-                                //  checked={values.test === "Male"}
+                                 checked={formik.values.gender === 'Male'}
                                   />
                                 
                                 Male</label>
@@ -122,7 +122,7 @@ const Form = (props) => {
                                 <input type="radio" className="form-check-input" name="gender"
                                 onChange={formik.handleChange}
                                 value = 'Female'
-                                // checked={values.test === "Female"}
+                                checked={formik.values.gender === 'Female'}
             
                                 />
                                 

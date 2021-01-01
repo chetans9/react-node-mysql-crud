@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 class EditCustomerComponent extends React.Component {
 
@@ -9,6 +10,7 @@ class EditCustomerComponent extends React.Component {
 
     this.state = {
       loading: true,
+      redirect : false,
 
     };
   }
@@ -26,25 +28,6 @@ class EditCustomerComponent extends React.Component {
 
 
 
-    
-
-    
-
-    //http://localhost:3001/customers/3
-
-
-    // fetch(`${process.env.REACT_APP_BASE_URL}/customers`)
-
-    //   .then(res => res.json())
-    //   .then(json => this.setState({
-    //     loading: false,
-    //     customer: json,
-    //   }));
-
-
-
-
-
 
   }
 
@@ -54,13 +37,21 @@ class EditCustomerComponent extends React.Component {
 
     axios.patch(`${process.env.REACT_APP_BASE_URL}/customers/${this.props.match.params.id}`, values)
       .then((result) => {
+          this.setState({
+            redirect : '/customers'
+          });
 
-        this.props.history.push('/customers');
+
+       // this.props.history.push('/customers');
       });
   }
 
 
   render() {
+
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} push/>
+    }
 
 
     return (
