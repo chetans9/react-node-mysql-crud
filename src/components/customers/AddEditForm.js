@@ -1,13 +1,23 @@
 import React from 'react';
 // import { useFormik,Field } from 'formik';
-import { useFormik, Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
 const AddEditForm = (props) => {
 
-    let initialValues = {};
-    
+
     //Prevent null values warning :
+    let initialValues = {
+        first_name : '',
+        last_name : '',
+        email : '',
+        mobile : '',
+        // date_of_birth : '',
+        pincode : '',
+        gender : '',
+        address : ''
+    };
+    
     //Repopulate Edit form : 
     for (const property in props.customer) {
         if (props.customer[property] !== null) {
@@ -97,8 +107,8 @@ const AddEditForm = (props) => {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <label htmlFor="date_of_birth">Date of Birth</label>
-                                <input type="date" name="date_of_birth" className="form-control" id="date_of_birth"
-                                    {...formik.getFieldProps('date_of_birth')}  />
+
+                                <Field name="date_of_birth" type="date" className="form-control" id="date_of_birth" value={formik.values.date_of_birth || ''}/>
                             </div>
                         </div>
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import querystring from 'query-string';
 import Pagination from '../partials/Pagination';
-import ReactPaginate from 'react-paginate';
 class CustomerListComponent extends React.Component {
 
   constructor(props) {
@@ -60,7 +59,7 @@ class CustomerListComponent extends React.Component {
    */
   index() {
 
-    fetch(`${process.env.REACT_APP_BASE_URL}` + `/customers?page=` + this.state.currentPage)
+    fetch(`${process.env.REACT_APP_BASE_URL}/customers?page=${this.state.currentPage}`)
       .then(res => res.json())
       .then(json => this.setState({
         loading: false,
