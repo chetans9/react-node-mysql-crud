@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './Form';
+import AddEditForm from './AddEditForm';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 
@@ -59,7 +59,7 @@ class EditCustomerComponent extends React.Component {
 
         <h2>Edit Customer</h2>
         <hr></hr>
-        {this.state.loading === true  ?  "Loading" :  <Form addMode="true" handleForm={this.handleForm.bind(this)} customer={this.state.customer}></Form>}
+        {this.state.loading === true  ?  "Loading" :  <AddEditForm addMode="true" handleForm={this.handleForm.bind(this)} customer={this.state.customer}></AddEditForm>}
        
 
 

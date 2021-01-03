@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from './Form';
+import AddEditForm from './AddEditForm';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
 
@@ -45,7 +45,7 @@ class AddCustomerComponent extends React.Component {
 
         <h2>Add Customer</h2>
         <hr></hr>
-        <Form addMode="true" handleForm={this.handleForm.bind(this)} customer={{}}></Form>
+        <AddEditForm addMode="true" handleForm={this.handleForm.bind(this)} customer={{}}></AddEditForm>
       </div>
     );
   }
